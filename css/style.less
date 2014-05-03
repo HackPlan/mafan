@@ -1,0 +1,104 @@
+@import "reset.css";
+
+body{
+  background: #f4f4f4;
+}
+
+.container{
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+header{
+  background: #454545;
+  padding: 1em 0;
+  color: #fff;
+  text-align: center;
+  h1{
+    margin: 0;
+  }
+}
+
+.problems .one{
+  border-radius: 3px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.20);
+  padding: 1em;
+  margin: 1em 0;
+  .title{
+    font-size: 1.2em;
+  }
+  .gain, .take{
+    font-size: 14px;
+    margin-right: 0.5em;
+  }
+  .gain{
+    color: #507724;
+  }
+  .take{
+    color: #CE3E50;
+  }
+  .btn{
+    cursor: pointer;
+    float: right;
+    border-radius: 2px;
+    background: #69AD1E;
+    border: 1px solid #417505;
+    color: #FFF;
+    padding: 0.5em 1em;
+    position: relative;
+    outline: none;
+    &:disabled{
+      background: #AAA;
+      border-color: #999;
+    }
+  }
+  .percent, .text{
+    display: none;
+    z-index: 2;
+    position: relative;
+  }
+  .text{
+    display: block;
+  }
+  .progress{
+    display: none;
+    background: #69AD1E;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .counting{
+    background: #a3a3a3;
+    .percent, .progress{
+      display: block;
+    }
+    .text{
+      display: none;
+    }
+  }
+}
+
+.goods .one{
+  display: block;
+  float: left;
+  margin: 0 1em 0.5em 0;
+  .name{
+    border-radius: 3px;
+    background: #B1B1B1;
+    border: 1px solid #8A8A8A;
+    color: #fff;  
+    padding: 0.3em 0.5em;
+    line-height: 1em;
+    display: inline-block;
+  }
+  .number{
+    color: #747474;
+    margin-left: 0.3em;
+  }
+}
+
+.nothing{
+  color: #999;
+}

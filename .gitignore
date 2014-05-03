@@ -1,0 +1,18 @@
+# Mac OS
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+
+# Vim
+*.sw[a-z]
+
+# node
+node_modules
+npm-debug.log
+
+# bower
+bower_components

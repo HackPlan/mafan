@@ -1,0 +1,31 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='format-detection', content='telephone=no')
+    meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi')
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    title 麻烦
+  body
+    #app
+      header
+        h1 麻烦
+      .container
+        .problems
+          .one(v-repeat="problems | levelFilter | requireFilter | dismissFilter")
+            button.btn(v-available="take | solveAvailability", v-class="counting: counting", v-on="click: solve($data)") 
+              .text 解决
+              .percent {{percent | percentage}}
+              .progress(v-style="width: percent | percentage")
+            .title {{title}}
+            span.take(v-repeat="take") -{{number | defaultOne}} {{name}}
+            span.gain(v-repeat="gain") +{{number | defaultOne}} {{name}}
+        .goods
+          h4 你拥有：
+          .one(v-repeat="player.goods")
+            span.name {{name}}
+            span.number(v-show="number > 1") &times; {{number}}
+          .nothing(v-show="!player.goods.length") 什么都没有
+    script(type='text/javascript', src='cordova.js')
+    script(type='text/javascript', src='bower_components/vue/dist/vue.min.js')
+    script(type='text/javascript', data-main="js/app", src='bower_components/requirejs/require.js')

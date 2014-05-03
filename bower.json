@@ -1,0 +1,22 @@
+{
+  "name": "MaFan",
+  "version": "0.0.1",
+  "authors": [
+    "unstop <unstop01@gmail.com>"
+  ],
+  "description": "Problems in life",
+  "main": "index.jade",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "vue": "~0.10.4"
+  }
+}
