@@ -9,6 +9,11 @@ require ['data'], (Gamedata) ->
       data
     save: (data) ->
       localStorage.setItem(Gamedata.key, JSON.stringify(data))
+    reset: ->
+      localStorage.removeItem(Gamedata.key)
+
+  clone = (src) ->
+    JSON.parse JSON.stringify(src)
 
   Vue.directive 'available', (value) ->
     @el.disabled = !value
@@ -20,40 +25,47 @@ require ['data'], (Gamedata) ->
       solve: (problem) ->
         player = @player
         addGood = (g, isTake) ->
+          goodToAdd = clone(g)
+          number = 0
           if isTake 
-            number = -1 * (g.number or 1)
+            number = -1 * (goodToAdd.number or 1)
           else
-            number = g.number or 1
+            number = goodToAdd.number or 1
           added = false
-          for one, index in player.goods
-            if g.name is one.name
-              unless one.number
-                one.number = number + 1
+          for goods, index in player.goods
+            if goodToAdd.name is goods.name
+              unless goods.number
+                goods.number = number + 1
               else
-                one.number += number
-              if one.number is 0
+                goods.number = goods.number + number
+              if goods.number is 0
                 player.goods.splice(index, 1)
               added = true
               break
           unless added
-            player.goods.push g
+            player.goods.push goodToAdd
         changeGoods = ->
           if problem.gain
-            for one in problem.gain
-              addGood one
+            for gain in problem.gain
+              addGood gain
           if problem.take
-            for one in problem.take
-              addGood one, true
+            for take in problem.take
+              addGood take, true
         countedTime = 0
         problem.counting = true
         problem.percent = 0
         counting = setInterval ->
-          countedTime += 0.097
-          if DEBUG_MODE then countedTime += 1
+          countedTime += 1
+          if DEBUG_MODE then countedTime += 10
           problem.percent = (countedTime / problem.time).toFixed(4)
           if countedTime >= problem.time
             clearInterval(counting)
             problem.counting = false
+            if problem.reset
+              player.level = 0
+              player.goods = []
+              dataStorage.save(player)
+              return true
             changeGoods()
             player.level += 1 if problem.growth
             dataStorage.save(player)
@@ -68,39 +80,32 @@ require ['data'], (Gamedata) ->
         playerGoods = for one in @player.goods
           one.name
         problems.filter (problem) ->
-          unless problem.require
+          if not problem.require and not problem.dismiss
             return true
-          for r in problem.require
-            unless r in playerGoods
-              return false
-          true
-      dismissFilter: (problems) ->
-        playerGoods = for one in @player.goods
-          one.name
-        problems.filter (problem) ->
-          unless problem.dismiss
-            return true
-          for r in problem.dismiss
-            if r in playerGoods
-              return false
+          if problem.require
+            for r in problem.require
+              unless r in playerGoods
+                return false
+          if problem.dismiss
+            for r in problem.dismiss
+              if r in playerGoods
+                return false
           true
       defaultOne: (number) ->
         number or 1
       percentage: (n) ->
         (Math.floor(n * 10000) / 100).toFixed(1) + "%"
-      solveAvailability: (takes) ->
+      solveAvailability: (takes, key) ->
+        return false if this[key]
         player = @$root.player
-        console.log "takes", takes
-        console.log "player.goods", player.goods
         getGoodsNumer = (good) ->
           for g in player.goods
-            return g.number if g.name is good.name
+            return (g.number or 1) if g.name is good.name
           0
         unless takes
           return true
         for take in takes
           if take.number > getGoodsNumer(take)
-            console.log "have no enough #{take.name}", getGoodsNumer(take)
             return false
         true
         

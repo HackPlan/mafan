@@ -12,8 +12,8 @@ html
         h1 麻烦
       .container
         .problems
-          .one(v-repeat="problems | levelFilter | requireFilter | dismissFilter")
-            button.btn(v-available="take | solveAvailability", v-class="counting: counting", v-on="click: solve($data)") 
+          .one(v-repeat="problems | levelFilter | requireFilter | orderBy 'growth' -1")
+            button.btn(v-available="take | solveAvailability counting", v-class="counting: counting", v-on="click: solve($data)") 
               .text 解决
               .percent {{percent | percentage}}
               .progress(v-style="width: percent | percentage")
