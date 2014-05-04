@@ -100,8 +100,8 @@ define [], ->
               name: "经历"
               number: 5
             ,
-              name: "压力"
-              number: 3
+              name: "金钱"
+              number: 5
             ,
               name: "破碎的心"
               number: 2
@@ -115,7 +115,7 @@ define [], ->
           gain: [
               name: "爱人"
           ]
-          time: 20
+          time: 40
         ,
           level: [3..4]
           title: "爱人离开了你"
@@ -137,6 +137,7 @@ define [], ->
           ]
           time: 30
         ,
+          level: [3..5]
           title: "你需要放松"
           require: ["压力"]
           take: [
@@ -150,8 +151,8 @@ define [], ->
               name: "经历"
               number: 5
             ,
-              name: "压力"
-              number: 3
+              name: "东西"
+              number: 5
             ,
               name: "朋友"
               number: 5
@@ -168,6 +169,31 @@ define [], ->
           ]
           time: 60
         ,
+          level: [3..4]
+          title: "你需要换一个更好的工作"
+          take: [
+              name: "知识",
+              number: 2
+          ]
+          gain: [
+              name: "经历"
+              number: 2
+            ,
+              name: "金钱"
+              number: 3
+          ]
+          time: 60
+        ,
+          level: [3..4]
+          title: "你需要买更多东西"
+          take: [
+              name: "金钱"
+          ]
+          gain: [
+              name: "东西"
+          ]
+          time: 20
+        ,
           level: [5]
           title: "你疾病缠身"
           take: [
@@ -180,10 +206,15 @@ define [], ->
           title: "你感到孤独"
           take: [
               name: "朋友"
-              number: 5
+              number: 2
           ]
-          gain: [
-              name: "希望"
+          time: 60
+        ,
+          level: [5]
+          title: "你感到无聊"
+          take: [
+              name: "记忆"
+              number: 2
           ]
           time: 60
         ,
