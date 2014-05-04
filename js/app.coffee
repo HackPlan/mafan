@@ -1,5 +1,5 @@
 require ['data'], (Gamedata) ->
-  DEBUG_MODE = true
+  DEBUG_MODE = false
 
   dataStorage =
     fetch: ->

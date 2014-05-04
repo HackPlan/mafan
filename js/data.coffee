@@ -41,15 +41,6 @@ define [], ->
           growth: true
           time: 30
         ,
-          level: [1]
-          title: "你是一个婴儿"
-          take: [
-              name: "记忆"
-              number: 5
-          ]
-          growth: true
-          time: 60
-        ,
           level: [1..4]
           title: "你需要学习"
           gain: [
@@ -63,6 +54,15 @@ define [], ->
               name: "记忆"
           ]
           time: 30
+        ,
+          level: [1]
+          title: "你是一个婴儿"
+          take: [
+              name: "记忆"
+              number: 5
+          ]
+          growth: true
+          time: 60
         ,
           level: [2]
           title: "你是一个小孩儿"
