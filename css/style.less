@@ -2,11 +2,13 @@
 
 body{
   background: #f4f4f4;
+  font: 400 16px/1.14 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
 }
 
 .container{
-  max-width: 40em;
+  max-width: 40rem;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 header{
@@ -48,6 +50,7 @@ header{
     padding: 0.5em 1em;
     position: relative;
     outline: none;
+    font-family: sans-serif;
     &:disabled{
       background: #AAA;
       border-color: #999;
@@ -88,7 +91,7 @@ header{
     border-radius: 3px;
     background: #B1B1B1;
     border: 1px solid #8A8A8A;
-    color: #fff;  
+    color: #fff;
     padding: 0.3em 0.5em;
     line-height: 1em;
     display: inline-block;
@@ -101,4 +104,21 @@ header{
 
 .nothing{
   color: #999;
+}
+
+footer{
+  clear: both;
+  padding-top: 1em;
+}
+footer .container{
+  text-align: center;
+  padding: 1em 0;
+  border-top: 1px solid #CCC;
+  margin-top: 3em;
+  font-size: .9em;
+  color: #999;
+  a{
+    text-decoration: none;
+    color: #666;
+  }
 }
